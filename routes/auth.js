@@ -54,7 +54,7 @@ router.post('/login', async (req, res) => {
         const token = jwt.sign(
             {id: user.id, email: user.email},
             process.env.JWT_SECRET,
-            {expiresIn: '1h'} // o token expira em 1 hora
+            {expiresIn: '10h'} // o token expira em 1 hora
         );
 
         //4. Retornar o token e os dados do usuário
