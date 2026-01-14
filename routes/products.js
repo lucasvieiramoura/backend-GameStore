@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Product = require('../models/Product');
+const auth = require('../middleware/authMiddleware');
 
 //1. Rota para listar todos os produtos: GET /api/products
 router.get('/products', async (req, res) => {
@@ -14,7 +15,7 @@ router.get('/products', async (req, res) => {
 });
 
 //2. Rota para adicionar um novo produto: POST /api/products
-router.post('/products', async (req, res) => {
+router.post('/products', auth, async (req, res) => {
     try { 
         const {name, description, price, category, imageUrl} = req.body;
         const newProduct = await Product.create({
